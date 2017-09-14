@@ -24,8 +24,9 @@ public class Data {
 public class UseDLL : MonoBehaviour
 {
 
-   [DllImport("TestCPPLibrary")]
-   private static extern IntPtr testStringPassing(string toEcho, int size);
+   //DllImport("TestCPPLibrary")]
+   //private static extern IntPtr testStringPassing(string toEcho, int size);
+
    public Data data = new Data();
 
    public static UseDLL instance = null;
@@ -37,22 +38,21 @@ public class UseDLL : MonoBehaviour
    // Use this for initialization
    void Start()
    {
-
-      using (StreamWriter writer = new StreamWriter("debug.txt", true))
-      {
-         string testEchoString = "test test test test test                                          "
+       using (StreamWriter writer = new StreamWriter("debug.txt", true))
+       {
+          /*string testEchoString = "test test test test test                                          "
             + "                                                                 "
             + "                                                                 ";
-
-         writer.WriteLine("before:" + testEchoString);
-
-         IntPtr echoedStringPtr = testStringPassing(testEchoString, testEchoString.Length);
-
-          String echoed = Marshal.PtrToStringAnsi(echoedStringPtr);
-
-         // writer.WriteLine("after:"+ echoed);
-
-		 /*string echoed = @"{
+            
+            writer.WriteLine("before:" + testEchoString);
+            
+            IntPtr echoedStringPtr = testStringPassing(testEchoString, testEchoString.Length);
+            
+            String echoed = Marshal.PtrToStringAnsi(echoedStringPtr);
+            
+            writer.WriteLine("after:"+ echoed);*/
+            
+         string echoed = @"{
             ""execute"": false,
             ""puzzleLines"": 2,
             ""puzzle"": [
@@ -67,34 +67,31 @@ public class UseDLL : MonoBehaviour
                   ""number2"": ""0""
                }
             ]
-         }";*/
+         }";
 
 		 data = JsonUtility.FromJson<Data>(echoed);
       }
       /* */
-
    }
 
    // Update is called once per frame
    void Update()
    {
-      //using (StreamWriter writer = new StreamWriter("debug.txt", true))
-      //{
+      using (StreamWriter writer = new StreamWriter("debug.txt", true))
+      {
+         /*string testEchoString = "test test test test test                                          "
+            + "                                                                 "
+            + "                                                                 ";
 
+          writer.WriteLine("before:" + testEchoString);
 
-         //string testEchoString = "test test test test test                                          "
-         //   + "                                                                 "
-         //   + "                                                                 ";
+         IntPtr echoedStringPtr = testStringPassing(testEchoString, testEchoString.Length);
 
-         // writer.WriteLine("before:" + testEchoString);
+          String echoed = Marshal.PtrToStringAnsi(echoedStringPtr);
 
-        // IntPtr echoedStringPtr = testStringPassing(testEchoString, testEchoString.Length);
+          writer.WriteLine("after:" + echoed);*/
 
-         // String echoed = Marshal.PtrToStringAnsi(echoedStringPtr);
-
-         // writer.WriteLine("after:" + echoed);
-
-         /*string echoed = @"{
+         string echoed = @"{
             ""execute"": true,
             ""puzzleLines"": 2,
             ""puzzle"": [
@@ -109,11 +106,10 @@ public class UseDLL : MonoBehaviour
                   ""number2"": ""2""
                }
             ]
-         }";*/
+         }";
 
-		 //JsonUtility.FromJsonOverwrite(echoed, data);
+		 JsonUtility.FromJsonOverwrite(echoed, data);
 
-      //}
-
+      }
    }
 }
